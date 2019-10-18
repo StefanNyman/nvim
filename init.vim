@@ -84,7 +84,7 @@ filetype plugin on
 set laststatus=2
 set number
 
-" colorscheme photon
+colorscheme gruvbox
 syntax on
 
 set encoding=utf-8
