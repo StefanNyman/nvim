@@ -2,7 +2,7 @@ set encoding=utf-8
 
 "so ~/.vim/plugins.vim
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
