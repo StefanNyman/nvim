@@ -37,6 +37,8 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 	Plug 'slashmili/alchemist.vim'
 	Plug 'elmcast/elm-vim'
+	Plug 'Shougo/echodoc.vim'
+	Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': stdpath('data') . '/plugged/gocode/nvim/symlink.sh' }
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -52,6 +54,8 @@ let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMinimalUI=1
 
+let g:airline_theme='monochrome'
+
 fu! SetupGoEnv()
 	let g:go_highlight_types = 1
 	let g:go_highlight_fields = 1
@@ -63,6 +67,8 @@ fu! SetupGoEnv()
 	let g:go_auto_type_info = 1
 	let g:go_fmt_command = "goimports"
 	let g:deoplete#sources#go#package_dot = 1
+	let g:deoplete#sort_class =['package', 'func', 'type', 'var', 'const']
+	let g:deoplete#source_importer = 1
 	setlocal noexpandtab tabstop=4 shiftwidth=4
 	map <S-b> :GoDefPop<CR>
 	map <C-b> :GoDef<CR>
@@ -83,6 +89,12 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " elixir stuff
 let g:mix_format_on_save = 1
+
+" echodoc
+let g:echodoc#enable_at_startup=1
+let g:echodoc#type = "echo"
+
+set noshowmode
 
 map ; :Files<CR>
 map <C-o><C-o> :NERDTreeToggle<CR>
