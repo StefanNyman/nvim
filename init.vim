@@ -39,6 +39,13 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'elmcast/elm-vim'
 	Plug 'Shougo/echodoc.vim'
 	Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': stdpath('data') . '/plugged/gocode/nvim/symlink.sh' }
+	Plug 'mattn/emmet-vim'
+	Plug 'tpope/vim-endwise'
+	Plug 'godlygeek/tabular'
+	Plug 'plasticboy/vim-markdown'
+	Plug 'ap/vim-css-color'
+	Plug 'mattn/webapi-vim'
+	Plug 'mattn/gist-vim'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -70,8 +77,12 @@ fu! SetupGoEnv()
 	let g:deoplete#sort_class =['package', 'func', 'type', 'var', 'const']
 	let g:deoplete#source_importer = 1
 	setlocal noexpandtab tabstop=4 shiftwidth=4
-	map <S-b> :GoDefPop<CR>
-	map <C-b> :GoDef<CR>
+	vmap <S-b> :GoDefPop<CR>
+	vmap <C-b> :GoDef<CR>
+	nmap <S-b> :GoDefPop<CR>
+	nmap <C-b> :GoDef<CR>
+	imap <S-b> <ESC>:GoDefPop<CR>
+	imap <C-b> <ESC>:GoDef<CR>
 endf
 
 "if file type is go then define go specific settings
@@ -92,7 +103,7 @@ let g:mix_format_on_save = 1
 
 " echodoc
 let g:echodoc#enable_at_startup=1
-let g:echodoc#type = "echo"
+let g:echodoc#type = "floating"
 
 set noshowmode
 
@@ -112,10 +123,11 @@ inoremap <C-z> <Esc>:undo<CR>i
 vmap <C-x> d
 nnoremap <C-r> :redo<CR>
 vmap <C-c> y
-nmap <C-v> p
-map <C-v> <Esc>pi
+nmap <C-v> p<ESC>
+imap <C-v> <Esc>pi
 nmap <C-m> <leader>c<space>
 vmap <C-m> <leader>c<space>gv
+vmap <C-a> :TagbarToggle<CR>
 nmap <C-a> :TagbarToggle<CR>
 imap <C-a> :TagbarToggle<CR>
 nmap <A-b> :Buffers<CR>
@@ -139,20 +151,20 @@ set termguicolors
 set undofile
 set undodir=~/.vim/undodir
 set number relativenumber
-set cursorline
 set hlsearch
 set ignorecase
 set smartcase
 set lazyredraw
 set magic
 set autoread
-" allow buffer switch without saving
-set hidden
+" allow buffer switch withset hidden
 
 "set completeopt-=preview
 set completeopt=noinsert,menuone,noselect
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*~
 
+
+autocmd InsertEnter,InsertLeave * set cursorline!
 
 if has('mouse')
 	set mouse=a
@@ -269,7 +281,6 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 "coc
 "let g:airline#extensions#coc#enabled=1
-set hidden
 set nobackup
 set nowritebackup
 set cmdheight=1
@@ -286,4 +297,7 @@ set signcolumn=yes
 "			\ 'reason': ['~/.bin/reason-language-server']
 "			\}
 
-
+" gist
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
