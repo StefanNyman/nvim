@@ -3,7 +3,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'airblade/vim-gitgutter'
 	Plug 'editorconfig/editorconfig-vim'
 	Plug 'itchyny/lightline.vim'
-	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 	Plug 'junegunn/fzf.vim'
 	Plug 'scrooloose/nerdtree'
 	Plug 'terryma/vim-multiple-cursors'
@@ -21,34 +21,25 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'tpope/vim-fugitive'
 	Plug 'davidhalter/jedi-vim'
-	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	"Plug 'deoplete-plugins/deoplete-go', { 'build': 'make' }
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'deoplete-plugins/deoplete-go', { 'build': 'make' }
+	Plug 'deoplete-plugins/deoplete-jedi'
+	Plug 'deoplete-plugins/deoplete-clang'
+	Plug 'deoplete-plugins/deoplete-docker'
+	Plug 'deoplete-plugins/deoplete-asm'
+	Plug 'pbogut/deoplete-elm'
+	Plug 'eagletmt/neco-ghc'
+	Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+	Plug 'racer-rust/vim-racer'
 	Plug 'mhinz/vim-startify'
-	"Plug 'ryanoasis/vim-devicons'
-	"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-	Plug 'ncm2/ncm2'
+	Plug 'ryanoasis/vim-devicons'
 	Plug 'roxma/nvim-yarp'
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
-	Plug 'ncm2/ncm2-cssomni'
-	Plug 'ncm2/ncm2-tern', { 'do': 'npm install' }
 	Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-	Plug 'ncm2/ncm2-jedi'
-	Plug 'ncm2/ncm2-racer'
-	Plug 'ncm2/ncm2-pyclang'
-	Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-	Plug 'ncm2/ncm2-go'
 	Plug 'slashmili/alchemist.vim'
-	Plug 'pbogut/ncm2-alchemist'
-	Plug 'HiPhish/ncm2-vlime'
-	Plug 'ncm2/ncm2-html-subscope'
-	Plug 'ncm2/ncm2-markdown-subscope'
-	Plug 'ncm2/ncm2-rst-subscope'
-	Plug 'ncm2/ncm2-match-highlight'
-	Plug 'ncm2/ncm2-highprio-pop'
+	Plug 'elmcast/elm-vim'
 call plug#end()
 
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:EasyMotion_smartcase = 1
 
@@ -61,8 +52,6 @@ let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMinimalUI=1
 
-let g:ncm2#match_highlight='bold'
-
 fu! SetupGoEnv()
 	let g:go_highlight_types = 1
 	let g:go_highlight_fields = 1
@@ -73,7 +62,7 @@ fu! SetupGoEnv()
 	let g:go_highlight_build_constraints = 1
 	let g:go_auto_type_info = 1
 	let g:go_fmt_command = "goimports"
-	"let g:deoplete#sources#go#package_dot = 1
+	let g:deoplete#sources#go#package_dot = 1
 	setlocal noexpandtab tabstop=4 shiftwidth=4
 	map <S-b> :GoDefPop<CR>
 	map <C-b> :GoDef<CR>
@@ -82,13 +71,15 @@ endf
 "if file type is go then define go specific settings
 autocmd FileType go call SetupGoEnv()
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
 if has('win32')
 	" ugly way to set the python exec path. will break on different python
 	" version.
 	let g:python3_host_prog = "C:\\Program\ Files\ (x86)\\Python37-32\\python.exe"
 endif
+
+" haskell
+let g:haskellmode_completion_ghc=0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " elixir stuff
 let g:mix_format_on_save = 1
@@ -115,6 +106,7 @@ nmap <C-m> <leader>c<space>
 vmap <C-m> <leader>c<space>gv
 nmap <C-a> :TagbarToggle<CR>
 imap <C-a> :TagbarToggle<CR>
+nmap <A-b> :Buffers<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 			
@@ -182,6 +174,20 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \}
 
+let g:tagbar_type_elm = {
+      \ 'kinds' : [
+      \ 'f:function:0:0',
+      \ 'm:modules:0:0',
+      \ 'i:imports:1:0',
+      \ 't:types:1:0',
+      \ 'a:type aliases:0:0',
+      \ 'c:type constructors:0:0',
+      \ 'p:ports:0:0',
+      \ 's:functions:0:0',
+      \ ]
+      \}
+
+let g:elm_setup_keybindings = 0
 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -192,9 +198,9 @@ autocmd BufReadPost *
 "fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-"if has("unix")
-"	let $FZF_DEFAULT_COMMAND = "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o -type f -print -o -type 1 -print 2>/dev/null"
-"endif
+if has("unix")
+	let $FZF_DEFAULT_COMMAND = "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'build/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+endif
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse --margin=1,4'
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
@@ -218,7 +224,7 @@ endf
 
 " startify
 if has("unix")
-	let g:startify_bookmarks=['~/config/nvim/init.vim', '~/.config/awesome', '~/work', '~/source']
+	let g:startify_bookmarks=['~/.config/nvim/init.vim', '~/.config/awesome', '~/work', '~/source']
 endif
 if has("win32")
 	let g:startify_bookmarks=['']
@@ -260,5 +266,12 @@ set shortmess+=c
 set signcolumn=yes
 
 "inoremap <silent><expr> <c-space> coc#refresh()
+
+"let g:LanguageClient_serverCommands = {
+"			\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"			\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"			\ 'python': ['/usr/local/bin/pyls'],
+"			\ 'reason': ['~/.bin/reason-language-server']
+"			\}
 
 
