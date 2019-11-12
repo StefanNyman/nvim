@@ -77,67 +77,67 @@ Plug 'ludwig/split-manpage.vim'
 
 
 " elixir
-Plug 'elixir-lang/vim-elixir'
-Plug 'carlosgaldino/elixir-snippets'
+Plug 'elixir-lang/vim-elixir', {'for': ['elixir']}
+Plug 'carlosgaldino/elixir-snippets', {'for': ['elixir']}
 
 
 " elm
 "" Elm Bundle
-Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim', {'for': ['elm']}
 
 
 " erlang
-Plug 'jimenezrick/vimerl'
+Plug 'jimenezrick/vimerl', {'for': ['erlang']}
 
 
 " go
 "" Go Lang Bundle
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for': ['go']}
 
 
 " haskell
 "" Haskell Bundle
-Plug 'eagletmt/neco-ghc'
-Plug 'dag/vim2hs'
-Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
+Plug 'dag/vim2hs', {'for': ['haskell']}
+Plug 'pbrisbin/vim-syntax-shakespeare', {'for': ['haskell']}
 
 
 " html
 "" HTML Bundle
-Plug 'hail2u/vim-css3-syntax'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'tpope/vim-haml'
-Plug 'mattn/emmet-vim'
+Plug 'hail2u/vim-css3-syntax', {'for': ['html', 'css', 'javascript', 'typescript']}
+Plug 'gorodinskiy/vim-coloresque', {'for': ['html', 'css', 'javascript', 'typescript']}
+Plug 'tpope/vim-haml', {'for': ['html', 'css', 'javascript', 'typescript']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'css', 'javascript', 'typescript']}
 
 
 " javascript
 "" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax', {'for': ['javascript']}
 
 
 " lua
 "" Lua Bundle
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-lua-inspect'
+Plug 'xolox/vim-lua-ftplugin', {'for': 'lua'}
+Plug 'xolox/vim-lua-inspect', {'for': 'lua'}
 
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
 " rust
 " Vim racer
-Plug 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer', {'for': ['rust']}
 
 " Rust.vim
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
 
 
 " typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'javascript']}
+Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript', 'javascript']}
 
 
 "*****************************************************************************

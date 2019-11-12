@@ -1,5 +1,7 @@
 
+let g:startify_custom_header =[]
 
+let g:dbext_default_profile_localPostgres = 'type=pgsql:host=localhost:user=z:passwd=:dbname=precisely_development'
 
 colorscheme gruvbox
 let g:airline_theme='bubblegum'
@@ -103,6 +105,8 @@ set completeopt=noinsert,menuone,noselect
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*~
 
 autocmd InsertEnter,InsertLeave * set cursorline!
+autocmd VimLeave * NERDTreeTabsClose
+autocmd VimLeave * TagbarClose
 
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
@@ -210,9 +214,12 @@ set nobackup
 set nowritebackup
 set cmdheight=1
 set updatetime=300
+"set updatetime=700
 set shortmess+=c
 set signcolumn=yes
 set expandtab
+set noshowmode
+set clipboard+=unnamed
 
 "inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -230,6 +237,9 @@ let g:gist_post_private = 1
 let g:echodoc#enable_at_startup=1
 let g:echodoc#type = "floating"
 
+" workspace
+let g:workspace_session_directory = $HOME . '/.cache/nvim/sessions'
+
 if has('mouse')
     set mouse=a
 endif
@@ -244,9 +254,42 @@ noremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ; :Files<CR>
 map <Leader>s <Plug>(easymotion-s)
 map <C-o><C-o> :NERDTreeToggle<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>i
+nnoremap <C-z> :undo<CR>
+inoremap <C-z> <Esc>:undo<CR>i
+vmap <C-x> d
+nnoremap <C-r> :redo<CR>
+vmap <C-c> y
+nmap <C-v> p<ESC>
+imap <C-v> <Esc>pi
+nmap <C-m> <leader>c<space>
+vmap <C-m> <leader>c<space>gv
+nnoremap <C-w> :ToggleWorkspace<CR>
+
 filetype plugin on
 syntax on
 filetype plugin indent on
 
 
+" cscope
+function! Cscope(option, query)
+  let color = '{ x = $1; $1 = ""; z = $3; $3 = ""; printf "\033[34m%s\033[0m:\033[31m%s\033[0m\011\033[37m%s\033[0m\n", x,z,$0; }'
+  let opts = {
+  \ 'source':  "cscope -dL" . a:option . " " . a:query . " | awk '" . color . "'",
+  \ 'options': ['--ansi', '--prompt', '> ',
+  \             '--multi', '--bind', 'alt-a:select-all,alt-d:deselect-all',
+  \             '--color', 'fg:188,fg+:222,bg+:#3a3a3a,hl+:104'],
+  \ 'down': '40%'
+  \ }
+  function! opts.sink(lines) 
+    let data = split(a:lines)
+    let file = split(data[0], ":")
+    execute 'e ' . '+' . file[1] . ' ' . file[0]
+  endfunction
+  call fzf#run(opts)
+endfunction
+
+" Invoke command. 'g' is for call graph, kinda.
+nnoremap <silent> <Leader>g :call Cscope('3', expand('<cword>'))<CR>
 
