@@ -16,3 +16,4 @@ Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': stdpath('data') . '/plugged/gocod
 Plug 'vim-scripts/dbext.vim'
 Plug 'thaerkh/vim-workspace'
 Plug 'ujihisa/neco-look'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'

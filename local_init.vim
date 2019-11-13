@@ -16,7 +16,14 @@ let g:nerdtreechdirmode=2
 let g:nerdtreeignore=[]
 let g:nerdtreeshowbookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
-let g:nerdtreeminimalui=1
+"let g:nerdtreeminimalui=1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['^.undodir$', '^.idea$', '^.cache$']
+let g:NERDTreeFileExtensionHighlightFullName = 1
+
+autocmd BufEnter * if bufname('#') =~ "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 fu! SetupGoEnv()
 	let g:go_highlight_types = 1
@@ -239,6 +246,7 @@ let g:echodoc#type = "floating"
 
 " workspace
 let g:workspace_session_directory = $HOME . '/.cache/nvim/sessions'
+let g:workspace_autosave = 0
 
 if has('mouse')
     set mouse=a
@@ -254,6 +262,7 @@ noremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ; :Files<CR>
 map <Leader>s <Plug>(easymotion-s)
 map <C-o><C-o> :NERDTreeToggle<CR>
+map <C-o><C-f> :NERDTreeFind<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>i
 nnoremap <C-z> :undo<CR>
