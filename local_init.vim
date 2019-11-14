@@ -25,6 +25,9 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 
 autocmd BufEnter * if bufname('#') =~ "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
+com! FormatJSON %!python -m json.tool
+com! FormatJSONSelection '<,'>python -m json.tool
+
 fu! SetupGoEnv()
 	let g:go_highlight_types = 1
 	let g:go_highlight_fields = 1
