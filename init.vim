@@ -87,7 +87,7 @@ Plug 'elmcast/elm-vim', {'for': ['elm']}
 
 
 " erlang
-Plug 'jimenezrick/vimerl', {'for': ['erlang']}
+"Plug 'jimenezrick/vimerl', {'for': ['erlang']}
 
 
 " go

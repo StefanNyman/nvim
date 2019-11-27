@@ -15,5 +15,16 @@ Plug 'Shougo/echodoc.vim'
 Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': stdpath('data') . '/plugged/gocode/nvim/symlink.sh' }
 Plug 'vim-scripts/dbext.vim'
 Plug 'thaerkh/vim-workspace'
-Plug 'ujihisa/neco-look'
+"Plug 'ujihisa/neco-look'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh'}
+Plug 'racer-rust/vim-racer', {'for': ['rust']}
+Plug 'vim-erlang/vim-erlang-tags', {'for': ['erlang']}
+Plug 'vim-erlang/vim-erlang-skeletons', {'for': ['erlang']}
+Plug 'vim-erlang/vim-erlang-runtime', {'for': ['erlang']}
+Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': ['erlang']}
+Plug 'vim-erlang/vim-erlang-compiler', {'for': ['erlang']}
+Plug 'vim-erlang/erlang-motions.vim', {'for': ['erlang']}
+Plug 'vim-erlang/vim-rebar', {'for': ['erlang']}
+Plug 'vim-erlang/vim-dialyzer', {'for': ['erlang']}
+Plug 'tpope/vim-abolish'

@@ -110,9 +110,20 @@ set ignorecase
 set smartcase
 set magic
 set autoread
+set hidden
 
 set completeopt=noinsert,menuone,noselect
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*~
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+
 
 autocmd InsertEnter,InsertLeave * set cursorline!
 autocmd VimLeave * NERDTreeTabsClose
