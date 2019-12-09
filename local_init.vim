@@ -245,7 +245,7 @@ set clipboard+=unnamed
 "inoremap <silent><expr> <c-space> coc#refresh()
 
 let g:LanguageClient_serverCommands = {
-                        \ 'haskell': ['hie-wrapper'],
+            \ 'haskell': ['hie-wrapper'],
 			\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
 			\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
 			\}
@@ -274,7 +274,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"			
 noremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ; :Files<CR>
-map <Leader>s <Plug>(easymotion-s)
+map <Leader>f <Plug>(easymotion-s)
 map <C-o><C-o> :NERDTreeToggle<CR>
 map <C-o><C-f> :NERDTreeFind<CR>
 nnoremap <C-s> :w<CR>
@@ -284,8 +284,7 @@ inoremap <C-z> <Esc>:undo<CR>i
 vmap <C-x> d
 nnoremap <C-r> :redo<CR>
 vmap <C-c> y
-nmap <C-v> p<ESC>
-imap <C-v> <Esc>pi
+nmap <C-v> p
 nmap <C-m> <leader>c<space>
 vmap <C-m> <leader>c<space>gv
 nnoremap <C-w> :ToggleWorkspace<CR>

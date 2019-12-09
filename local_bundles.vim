@@ -1,4 +1,5 @@
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-go', { 'build': 'make', 'for': ['go'] }
 Plug 'deoplete-plugins/deoplete-jedi', {'for': ['python']}
 Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'c++']}
@@ -28,3 +29,12 @@ Plug 'vim-erlang/erlang-motions.vim', {'for': ['erlang']}
 Plug 'vim-erlang/vim-rebar', {'for': ['erlang']}
 Plug 'vim-erlang/vim-dialyzer', {'for': ['erlang']}
 Plug 'tpope/vim-abolish'
+Plug 'killphi/vim-ebnf', {'for': ['ebnf']}
+Plug 'chrisbra/unicode.vim'
+Plug 'vim-scripts/bnf.vim', { 'for': ['bnf']}
+Plug 'jrozner/vim-antlr'
+Plug 'bitc/vim-hdevtools', { 'for': ['haskell'] }
+Plug 'mhartington/nvim-typescript', { 'for': ['typescript'], 'do': './install.sh' }
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
