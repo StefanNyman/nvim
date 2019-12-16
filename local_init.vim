@@ -23,6 +23,8 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['^.undodir$', '^.idea$', '^.cache$']
 let g:NERDTreeFileExtensionHighlightFullName = 1
 
+let g:clang_library_path = '/usr/lib64/libclang.so'
+
 autocmd BufEnter * if bufname('#') =~ "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 com! FormatJSON %!python -m json.tool
@@ -116,6 +118,7 @@ set completeopt=noinsert,menuone,noselect
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*~
 
 let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['hie-wrapper'],
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
@@ -244,12 +247,6 @@ set clipboard+=unnamed
 
 "inoremap <silent><expr> <c-space> coc#refresh()
 
-let g:LanguageClient_serverCommands = {
-            \ 'haskell': ['hie-wrapper'],
-			\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-			\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-			\}
-
 " gist
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
@@ -315,3 +312,10 @@ endfunction
 " Invoke command. 'g' is for call graph, kinda.
 nnoremap <silent> <Leader>g :call Cscope('3', expand('<cword>'))<CR>
 
+let tokens_path = "~/.config/nvim/tokens.vim"
+
+if filereadable(expand(tokens_path))
+    source ~/.config/nvim/tokens.vim 
+endif
+
+call lh#local_vimrc#munge('whitelist', $HOME . '/source')

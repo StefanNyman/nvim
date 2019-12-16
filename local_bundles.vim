@@ -2,7 +2,10 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-go', { 'build': 'make', 'for': ['go'] }
 Plug 'deoplete-plugins/deoplete-jedi', {'for': ['python']}
-Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'c++']}
+Plug 'Shougo/deoplete-clangx', { 'for': ['c', 'c++']}
+Plug 'Shougo/neoinclude.vim', { 'for': ['c', 'c++']}
+"Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'c++']}
+"Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'c++']}
 Plug 'deoplete-plugins/deoplete-docker', {'for': ['Dockerfile']}
 Plug 'deoplete-plugins/deoplete-asm', {'for': ['asm', 'assembly']}
 Plug 'pbogut/deoplete-elm', {'for': ['elm']}
@@ -38,3 +41,7 @@ Plug 'mhartington/nvim-typescript', { 'for': ['typescript'], 'do': './install.sh
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'jaxbot/github-issues.vim'
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
+
