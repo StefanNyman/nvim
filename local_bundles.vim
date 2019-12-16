@@ -44,4 +44,4 @@ Plug 'prettier/vim-prettier', {
 Plug 'jaxbot/github-issues.vim'
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
-
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'c++'] }
