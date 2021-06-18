@@ -1,0 +1,62 @@
+{
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "cc",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                ".git"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "index": {
+                    "onChange": true
+                },
+                "highlight": {"lsRanges": true}
+            }
+        },
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": [
+                "--lsp"
+            ],
+            "rootPatterns": [
+                ".cabal",
+                "stack.yaml",
+                "cabal.project",
+                ".hie-bios",
+                "cabal.config",
+                "package.yaml",
+                "hie.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {
+                    "hlintOn": true,
+                    "maxNumberOfProblems": 10,
+                    "completionSnippetsOn": true
+                }
+            }
+        },
+        "purescript": {
+            "command": "purescript-language-server",
+            "args": ["--stdio", "--config {}"],
+            "filetypes": ["purescript", "purs"],
+            "rootPatterns": ["spago.dhall", "packages.dhall"]
+        }
+    },
+    "sourcekit.commandPath": "/usr/bin/sourcekit-lsp",
+    "eslint.autoFixOnSave": true
+}
