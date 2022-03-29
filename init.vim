@@ -5,37 +5,41 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'jiangmiao/auto-pairs'
+"Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+"Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 Plug 'elixir-editors/vim-elixir'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'bluz71/vim-moonfly-colors'
+"Plug 'dracula/vim', {'as': 'dracula'}
+"Plug 'bluz71/vim-moonfly-colors'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'idris-hackers/idris-vim'
+"Plug 'idris-hackers/idris-vim'
 Plug 'KabbAmine/yowish.vim'
-Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'vim-syntastic/syntastic'
 Plug 'rhysd/vim-clang-format'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'keith/swift.vim'
+"Plug 'keith/swift.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
+"Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'vim-scripts/dbext.vim'
 "Plug 'sighol/vim-colemak'
-Plug 'hamler-lang/hamler-vim'
-Plug 'gleam-lang/gleam.vim'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'rescript-lang/vim-rescript'
+"Plug 'hamler-lang/hamler-vim'
+"Plug 'gleam-lang/gleam.vim'
+"Plug 'reasonml-editor/vim-reason-plus'
+"Plug 'rescript-lang/vim-rescript'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'jschwarz89/shared-session-vim'
+"Plug 'vlime/vlime', {'rtp': 'vim/'}
+"Plug 'ziglang/zig.vim'
+"Plug 'udalov/kotlin-vim'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 call plug#end()
 
@@ -46,9 +50,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:hy_enable_conceal = 1
 let g:hy_conceal_fancy = 1
 
-colorscheme yowish
+"colorscheme yowish
 "colorscheme gruvbox
 "colorscheme space-vim-dark
+colorscheme purify
 set termguicolors
 "highlight Search guibg='Purple' guifg='NONE'
 
@@ -83,9 +88,14 @@ autocmd FileType go nmap gtj :CocCommand go.tags.add json<CR>
 autocmd FileType go nmap gty :CocCommand go.tags.add yaml<CR>
 autocmd FileType go nmap gtx :CocCommand go.tags.clear<CR>
 autocmd FileType go nmap gmm :GoMetaLinter<CR>
+autocmd BufNewFile,BufRead *.fs :set filetype=fsharp
+
 "autocmd BufWritePre *.go :GoMetaLinter
-let g:go_auto_sameids=1
-let g:go_fmt_command='goimports'
+let g:go_diagnostics_enabled=0
+let g:go_auto_sameids=0
+let g:go_jump_to_error=0
+let g:go_metalinter_enabled=[]
+let g:go_fmt_command='gofumports'
 let g:go_highlight_array_whitespace_error=1
 let g:go_highlight_chan_whitespace_error=1
 let g:go_highlight_extra_types=1
@@ -113,11 +123,11 @@ syntax on
 "set number relativenumber
 set number
 
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-augroup END
+"augroup numbertoggle
+"    autocmd!
+"    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+"augroup END
 
 let g:netrw_banner=0
 let g:nerw_liststyle=3
@@ -202,6 +212,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" rename symbol in scope
+nmap <leader>rr <Plug>(coc-rename)
+
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -375,3 +389,4 @@ let g:neovide_refresh_rate=140
 let g:neovide_cursor_animation_length=0
 let g:neovide_cursor_trail_length=0.0
 let g:neovide_cursor_antialiazing=v:true
+
