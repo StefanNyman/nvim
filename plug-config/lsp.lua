@@ -69,6 +69,11 @@ nvim_lsp.pyright.setup {
 nvim_lsp.gopls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
+    settings = {
+        gopls = {
+            gofumpt = true,
+        },
+    },
 }
 nvim_lsp.asm_lsp.setup {
     capabilities = capabilities,
